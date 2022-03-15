@@ -1,0 +1,121 @@
+﻿@model IEnumerable<WebApplication1.PrevisaoClima>
+
+@{
+    ViewBag.Title = "Clima tempo Simples";
+    //ViewBag.DropDown = 2;
+}
+
+<h2>Clima tempo simples</h2>
+
+<p>
+    @*@@Html.ActionLink("Create New", "Create")*@
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center">Cidades mais quentes hoje</div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cidade.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.temperaturaMinima)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.temperaturaMaxima)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(o => o.DataPrevisao.Date == DateTime.Now.Date).OrderByDescending(o => o.temperaturaMaxima).Take(3))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.temperaturaMinima) Cº
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.temperaturaMaxima) Cº
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading text-center">Cidades mais frias hoje</div>
+            <div class="panel-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Cidade.Nome)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.temperaturaMinima)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.temperaturaMaxima)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.Where(o => o.DataPrevisao.Date == DateTime.Now.Date).OrderBy(o => o.temperaturaMinima).Take(3))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cidade.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.temperaturaMinima) Cº
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.temperaturaMaxima) Cº
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<br />
+<br />
+
+
+<nav style="text-align:right">
+    <h4>Cidade:</h4>
+    @Html.DropDownList("Id", ViewBag.Cidade as SelectList)
+</nav>
+
+<hr />
+
+<br />
+<br />
+
+
+
+<div id="Temperaturas">
+
+</div>
+
+<script>
+
+</script>
+
+<footer>
+    <p>&copy; @DateTime.Now.Year - Bruno Marques</p>
+</footer>
+

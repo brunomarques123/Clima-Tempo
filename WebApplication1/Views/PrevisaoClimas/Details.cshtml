@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication1.PrevisaoClima>
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">@item.DiaSemana</div>
+                <div class="panel-body">
+                    <table>
+
+                        <tr>
+                            <td>
+                                <img src="~/Content/Img/climanublado.png" />
+                                <h2 style="font:italic bold 15px arial">@item.Clima </h2>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h2 style="font:italic bold 15px arial">Minima: </h2>
+                                @Html.DisplayFor(modelItem => item.temperaturaMinima) Cº;
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <h2 style="font:italic bold 15px arial">Máxima: </h2>
+                                @Html.DisplayFor(modelItem => item.temperaturaMaxima) Cº
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
